@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="body">
-                <form>
+                <form method="post" enctype="multipart/form-data">
                     <div class="form-group form-float">
                         <div class="form-line">
                         <input asp-for="Name" class="form-control">
@@ -30,9 +30,45 @@
                            
                         </div>
                         <div>
-                        <span asp-validation-for="Name" class="font-bold col-red">Error</span>
+                        <span asp-validation-for="Name" class="font-bold col-red"></span>
                         </div>
                     </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="IsMain" class="filled-in chk-col-indigo" >
+                        <label asp-for="IsMain">Is Main</label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="IsMain" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div id="PhotoBox" class="form-group form-float">
+                    <div class="form-line">
+                        <label asp-for="Photo"></label>
+                        <input asp-for="Photo" class="filled-in chk-col-indigo" checked="">
+                       
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="Photo" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="" id="MainCatBox">
+                    <p>
+                        <b>Select Main Category</b>
+                    </p>
+                    <select class="form-control show-tick" name="MainCatId">
+                        @foreach (Category cat in ViewBag.Categories)
+                        {
+                            <option value="@cat.Id" option>@cat.Name</option>
+                        }
+                       
+                    </select>
+
+                </div>
+
+               
 
                     <br>
                     <button type="submit" class="deep-purple m-t-15 waves-effect">Submit</button>
@@ -42,6 +78,38 @@
     </div>
 
 
+    
+    @section Css{
+        <style>
+            .dropdown-menu.inner{
+                max-height:200px !important
+            }
+        </style>
+    <link asp-append-version="true" href="~/admin/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    }
+
 @section Scripts{
+ 
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        if ($('#IsMain').prop('checked')) {
+            $("#PhotoBox").css("display", "block")
+            $("#MainCatBox").css("display", "none")
+        }
+        else {
+            $("#PhotoBox").css("display", "none")
+            $("#MainCatBox").css("display", "block")
+        }
+        $(document).on("change", "#IsMain", function () {
+            if ($('#IsMain').prop('checked')) {
+                $("#PhotoBox").css("display","block")
+                $("#MainCatBox").css("display","none")
+            }
+            else{
+                $("#PhotoBox").css("display","none")
+                $("#MainCatBox").css("display","block")
+            }
+        })
+       
+    </script>
      }
