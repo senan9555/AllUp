@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NXcHiLQXqntwwPnw8s0xjxwHhka6zGdlgiATuDJtQYo=",
+  "Hash": "lH3R94IQORhDgPEIPTHrNCqYltDt97SpljMd6Bo5CSY=",
   "Source": "AllUp",
   "BasePath": "_content/AllUp",
   "Mode": "Default",
@@ -60229,6 +60229,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\ionicons28b5.woff"
+    },
+    {
+      "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\0a62b9b3-0c9e-4c20-b16d-d1a31b52f0bb250px-Batmanlee.png",
+      "SourceId": "AllUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\",
+      "BasePath": "_content/AllUp",
+      "RelativePath": "assets/images/0a62b9b3-0c9e-4c20-b16d-d1a31b52f0bb250px-Batmanlee.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\0a62b9b3-0c9e-4c20-b16d-d1a31b52f0bb250px-Batmanlee.png"
     },
     {
       "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\author-1.png",

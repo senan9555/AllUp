@@ -12,12 +12,13 @@ namespace AllUp.Areas.Admin.Controllers
         private readonly AppDbContext _db;
         private readonly IWebHostEnvironment _env;
 
-
+       
         public CategoryController(AppDbContext db, IWebHostEnvironment env)
         {
             _db = db;
             _env = env;
         }
+       
 
         #region Index
         public async Task<IActionResult> Index()
@@ -26,7 +27,6 @@ namespace AllUp.Areas.Admin.Controllers
             return View(categories);
         }
         #endregion
-
 
         #region Create
         public async Task<IActionResult> Create()
@@ -88,5 +88,13 @@ namespace AllUp.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Update
+        public async Task<IActionResult> Update(int? id)
+        {
+           
+            return View();
+
+        }
+        #endregion
     }
 }

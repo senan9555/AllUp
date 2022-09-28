@@ -13,5 +13,6 @@ namespace AllUp.Models
         public int? ParentId { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

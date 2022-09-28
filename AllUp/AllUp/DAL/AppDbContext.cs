@@ -10,5 +10,9 @@ namespace AllUp.DAL
                 
         }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductDetail> ProductDetails { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
     }
 }

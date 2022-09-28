@@ -21,9 +21,12 @@ namespace AllUp.Controllers
             return View(categories);
         }
 
+        #region Error
+
         public IActionResult Error()
         {
             return View();
         }
+        #endregion
     }
 }
