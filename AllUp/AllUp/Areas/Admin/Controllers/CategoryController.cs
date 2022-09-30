@@ -91,10 +91,93 @@ namespace AllUp.Areas.Admin.Controllers
         #region Update
         public async Task<IActionResult> Update(int? id)
         {
-           
-            return View();
+            ViewBag.Categories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
+            if(id == null)
+            {
+                return NotFound();
+            }
+            Category dbcategory =await _db.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            if(dbcategory == null)
+            {
+                return BadRequest();
+            }
+            return View(dbcategory);
 
         }
+        #endregion
+
+        #region Update Post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Category category,int CatId)
+        {
+            ViewBag.Categories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Category dbcategory = await _db.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            if (dbcategory == null)
+            {
+                return BadRequest();
+            }
+            if (dbcategory.IsMain)
+            {
+                bool isExist = await _db.Categories.AnyAsync(x => x.Parent.Name == category.Name);
+                if (isExist)
+                {
+                    ModelState.AddModelError("Title", "This category already is exist");
+                    return View(dbcategory);
+                }
+                if(category.Photo != null)
+                {
+                    if (!category.Photo.IsImage())
+                    {
+                        ModelState.AddModelError("Photo", "please select a photo");
+                        return View(dbcategory);
+                    }
+                    if (category.Photo.IsOlder1MB())
+                    {
+                        ModelState.AddModelError("Photo", "Max 1MB");
+                        return View(dbcategory);
+                    }
+                    string folder = Path.Combine(_env.WebRootPath, "assets", "images");
+                    dbcategory.Image = await category.Photo.SaveFileAsync(folder);
+                }
+
+            }
+            else
+            {
+                if(CatId == null)
+                {
+                    return NotFound();
+                }
+                dbcategory.ParentId = CatId;
+            }
+            dbcategory.Name=category.Name;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+
+        }
+        #endregion
+
+        #region Detail
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            Category? category = await _db.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            if(category == null)
+            {
+                return BadRequest();
+            }
+            return View(category);
+        }
+
         #endregion
     }
 }

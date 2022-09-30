@@ -13,7 +13,7 @@ namespace AllUp.Models
         public string ProductCode { get; set; }
         public string Tags { get; set; }
         public bool HasStock { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }

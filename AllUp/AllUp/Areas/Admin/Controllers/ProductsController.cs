@@ -1,4 +1,5 @@
 ﻿using AllUp.DAL;
+using AllUp.Helpers;
 using AllUp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,12 +31,84 @@ namespace AllUp.Areas.Admin.Controllers
 
         public async Task<IActionResult> Create()
         {
-            Category? firstMainCat= await _db.Categories.Include(x=>x.Children).FirstOrDefaultAsync(x=>x.IsMain);
-            ViewBag.MainCategories = await _db.Categories.Where(x=>x.IsMain).ToListAsync();
+            Category? firstMainCat = await _db.Categories.Include(x => x.Children).FirstOrDefaultAsync(x => x.IsMain);
+            ViewBag.MainCategories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
             ViewBag.ChildCategories = firstMainCat.Children;
             return View();
         }
 
+        #endregion
+
+        #region Create Post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Create(Product product, int? mainCatId, int childCatId)
+        {
+            Category? firstMainCat = await _db.Categories.Include(x => x.Children).FirstOrDefaultAsync(x => x.IsMain);
+            ViewBag.MainCategories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
+            ViewBag.ChildCategories = firstMainCat.Children;
+            if (product.Photos == null)
+            {
+                ModelState.AddModelError("Photos", "add photo");
+            };
+            if (mainCatId == null)
+            {
+                return BadRequest();
+            }
+            List<ProductImage> productImages = new List<ProductImage>();
+            foreach (IFormFile Photo in product.Photos)
+            {
+                if (!Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "please select a image type");
+                    return View();
+                }
+                if (Photo.IsOlder1MB())
+                {
+                    ModelState.AddModelError("Photo", "Max 1 MB");
+                    return View();
+                }
+                string folder = Path.Combine(_env.WebRootPath, "assets", "images", "product");
+                ProductImage productImage = new ProductImage
+                {
+                    Image = await Photo.SaveFileAsync(folder),
+                };
+                productImages.Add(productImage);
+            }
+            List<ProductCategory> productCategories = new List<ProductCategory>();
+            ProductCategory mainProductCategory = new ProductCategory
+            {
+                CategoryId = (int)mainCatId,
+            };
+            productCategories.Add(mainProductCategory);
+
+            if (childCatId != null)
+            {
+                ProductCategory childProductCategory = new ProductCategory
+                {
+                    CategoryId = (int)childCatId,
+                };
+                productCategories.Add(childProductCategory);
+
+            }
+
+            product.ProductCategories = productCategories;
+            product.ProductImages = productImages;
+            await _db.Products.AddAsync(product);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+
+        }
+        #endregion
+
+        #region LoadChildCategories
+        public async Task<IActionResult> LoadChildCategoriesAsync(int mainId)
+        {
+            List<Category> childCategories = await _db.Categories.Where(x => x.ParentId == mainId).ToListAsync();
+            return PartialView("_LoadChildCategoriesPartial",childCategories);
+        }
         #endregion
 
     }

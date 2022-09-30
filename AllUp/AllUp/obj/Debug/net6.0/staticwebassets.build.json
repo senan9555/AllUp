@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lH3R94IQORhDgPEIPTHrNCqYltDt97SpljMd6Bo5CSY=",
+  "Hash": "E9MM480UAiRWZVE9UTqcEkJtpcDc0kW6umFgoq5wqcY=",
   "Source": "AllUp",
   "BasePath": "_content/AllUp",
   "Mode": "Default",
@@ -61217,6 +61217,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\payment.png"
     },
     {
+      "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\1759604b-718e-4db3-abe9-dc29c8c66f05250px-Batmanlee.png",
+      "SourceId": "AllUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\",
+      "BasePath": "_content/AllUp",
+      "RelativePath": "assets/images/product/1759604b-718e-4db3-abe9-dc29c8c66f05250px-Batmanlee.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\product\\1759604b-718e-4db3-abe9-dc29c8c66f05250px-Batmanlee.png"
+    },
+    {
       "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\3b203285-03bd-4065-b15d-a37e15d37ec5download (1).jfif",
       "SourceId": "AllUp",
       "SourceType": "Discovered",
@@ -61319,6 +61336,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\product\\636b8c29-c7b8-4075-bbe8-d3cd079b975acategory-3.jpg"
     },
     {
+      "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\6885c87b-77c2-4894-b4ab-772215ea1500250px-Batmanlee.png",
+      "SourceId": "AllUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\",
+      "BasePath": "_content/AllUp",
+      "RelativePath": "assets/images/product/6885c87b-77c2-4894-b4ab-772215ea1500250px-Batmanlee.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\product\\6885c87b-77c2-4894-b4ab-772215ea1500250px-Batmanlee.png"
+    },
+    {
       "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\7edf463a-1948-4674-8988-2b4ffb006722download2.jfif",
       "SourceId": "AllUp",
       "SourceType": "Discovered",
@@ -61419,6 +61453,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\product\\a7ee910d-cd0f-4b78-97f1-dcbac2ed1504download.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\a9014dd9-c46d-43b9-a93f-3fda1dcf80c3250px-Batmanlee.png",
+      "SourceId": "AllUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\",
+      "BasePath": "_content/AllUp",
+      "RelativePath": "assets/images/product/a9014dd9-c46d-43b9-a93f-3fda1dcf80c3250px-Batmanlee.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\product\\a9014dd9-c46d-43b9-a93f-3fda1dcf80c3250px-Batmanlee.png"
     },
     {
       "Identity": "C:\\Users\\99450\\Desktop\\AllUp\\AllUp\\AllUp\\wwwroot\\assets\\images\\product\\cb39c2f0-090e-423a-a2e3-47527b2df716download2.jfif",
