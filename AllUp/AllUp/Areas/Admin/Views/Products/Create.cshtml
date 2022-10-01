@@ -130,13 +130,16 @@
                     <p>
                         <b>Select Main Category</b>
                     </p>
-                    <select class="form-control" id="MainCatId" name="MainCatId">
-                        @foreach (Category cat in ViewBag.MainCategories)
-                        {
-                            <option value="@cat.Id"> @cat.Name</option>
-                        }
+                    <div >
+                        <select class="form-control" id="MainCatId" name="MainCatId">
+                            @foreach (Category cat in ViewBag.MainCategories)
+                            {
+                                <option value="@cat.Id"> @cat.Name</option>
+                            }
 
-                    </select>
+                        </select>
+                    </div>
+                   
 
                 </div>
                 <div class="">
@@ -145,7 +148,7 @@
                     </p>
                 </div>
                 <div id="childCatId">
-                    <select class="form-control show-tick" id="childCatId" name="childCatId">
+                    <select class="form-control show-tick"  name="childCatId">
                         @foreach (Category cat in ViewBag.ChildCategories)
                         {
                             <option value="@cat.Id"> @cat.Name</option>
@@ -192,16 +195,16 @@
 
         $(document).on("change", "#MainCatId", function () {
             $.ajax({
-                url: "/Admin/Products/LoadChildCategories/",
+                url: "/Admin/Products/LoadChildCategories",
                 type:"get",
                 data:{
-                    "mainId": $("mainCatId").val()
+                    "MainCatId": $("#MainCatId").val(),
                 },
                 success: function (res) {
-                    $("#childCatId").empty()
+                    $("#childCatId").empty();
                     $("#childCatId").append(res);
                 }
-            });
+            })
         })
 
     </script>

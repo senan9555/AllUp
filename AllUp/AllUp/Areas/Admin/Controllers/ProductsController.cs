@@ -44,7 +44,7 @@ namespace AllUp.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Create(Product product, int? mainCatId, int childCatId)
+        public async Task<IActionResult> Create(Product product, int? MainCatId, int? childCatId)
         {
             Category? firstMainCat = await _db.Categories.Include(x => x.Children).FirstOrDefaultAsync(x => x.IsMain);
             ViewBag.MainCategories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
@@ -53,7 +53,7 @@ namespace AllUp.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("Photos", "add photo");
             };
-            if (mainCatId == null)
+            if (MainCatId == null)
             {
                 return BadRequest();
             }
@@ -80,20 +80,16 @@ namespace AllUp.Areas.Admin.Controllers
             List<ProductCategory> productCategories = new List<ProductCategory>();
             ProductCategory mainProductCategory = new ProductCategory
             {
-                CategoryId = (int)mainCatId,
+                CategoryId = (int)MainCatId,
             };
-            productCategories.Add(mainProductCategory);
 
-            if (childCatId != null)
+            ProductCategory childProductCategory = new ProductCategory
             {
-                ProductCategory childProductCategory = new ProductCategory
-                {
-                    CategoryId = (int)childCatId,
-                };
-                productCategories.Add(childProductCategory);
+                CategoryId = (int)childCatId,
+            };
 
-            }
-
+            productCategories.Add(mainProductCategory);
+            productCategories.Add(childProductCategory);
             product.ProductCategories = productCategories;
             product.ProductImages = productImages;
             await _db.Products.AddAsync(product);
@@ -104,10 +100,10 @@ namespace AllUp.Areas.Admin.Controllers
         #endregion
 
         #region LoadChildCategories
-        public async Task<IActionResult> LoadChildCategoriesAsync(int mainId)
+        public async Task<IActionResult> LoadChildCategories(int MainCatId)
         {
-            List<Category> childCategories = await _db.Categories.Where(x => x.ParentId == mainId).ToListAsync();
-            return PartialView("_LoadChildCategoriesPartial",childCategories);
+            List<Category> childCategories = await _db.Categories.Where(x => x.ParentId == MainCatId).ToListAsync();
+            return PartialView("_LoadChildCategoriesPartial", childCategories);
         }
         #endregion
 

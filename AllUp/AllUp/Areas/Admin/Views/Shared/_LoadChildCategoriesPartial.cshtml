@@ -1,6 +1,6 @@
 ﻿@model List<Category>
 
-<select class="form-control show-tick" id="childCatId" name="childCatId">
+<select class="form-control show-tick" name="childCatId">
     @foreach (Category cat in Model)
     {
         <option value="@cat.Id"> @cat.Name</option>
