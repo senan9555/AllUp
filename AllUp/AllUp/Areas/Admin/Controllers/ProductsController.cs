@@ -107,5 +107,42 @@ namespace AllUp.Areas.Admin.Controllers
         }
         #endregion
 
+        #region DeleteProductImages
+
+        public async Task<IActionResult> DeleteProductImages(int? proImgId)
+        {
+            ProductImage? productImage = await _db.ProductImages.Include(x=>x.Product).ThenInclude(x=>x.ProductImages).FirstOrDefaultAsync(x=>x.Id == proImgId);
+            int productImagesCount = productImage.Product.ProductImages.Count;
+            _db.ProductImages.Remove(productImage);
+            await _db.SaveChangesAsync();
+            if (productImagesCount == 2)
+            {
+                return Content("stop");
+            }
+            return Content("ok");
+        }
+
+        #endregion
+
+        #region Update
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            if(id== null)
+            {
+                return NotFound();
+            }
+            Product? dbProduct = await _db.Products.Include(x=>x.ProductCategories).ThenInclude(x=>x.Category).ThenInclude(x=>x.Children).Include(x=>x.ProductImages).FirstOrDefaultAsync(x=>x.Id==id);
+            if(dbProduct == null)
+            {
+                return BadRequest();
+            }
+            ViewBag.MainCategories = await _db.Categories.Where(x => x.IsMain).ToListAsync();
+            return View(dbProduct);
+        }
+
+        #endregion
+
+
     }
 }

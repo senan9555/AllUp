@@ -1,0 +1,266 @@
+﻿@model Product
+
+<div class="row clearfix"></div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                Update Product
+            </h2>
+            <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="myImages" style="display:flex;">
+                @foreach (ProductImage productImage in Model.ProductImages)
+                {
+                    if (Model.ProductImages.Count==1){
+                        <div class="MyImg">
+                            <img style="width:100px;height:100;object-fit:cover" src="~/assets/images/product/@productImage.Image" />
+                            <input value="@productImage.Id" type="hidden" />
+                        </div>
+                    }
+                    else{
+                        <div class="MyImg">
+                            <img style="width:100px;height:100;object-fit:cover" src="~/assets/images/product/@productImage.Image" />
+                            <a class="btn btn-danger del-images">Delete</a>
+                            <input value="@productImage.Id" type="hidden" />
+                        </div>
+                    }
+                   
+                }
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div id="PhotoBox" class="form-group form-float">
+                    <div class="form-line">
+                        <label asp-for="Photos"></label>
+                        <input asp-for="Photos" class="filled-in chk-col-indigo" checked="">
+
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="Photos" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="Name" class="form-control">
+                        <label class="form-label" asp-for="Name"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="Name" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="Price" class="form-control">
+                        <label class="form-label" asp-for="Price"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="Price" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="Rate" class="form-control">
+                        <label class="form-label" asp-for="Rate"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="Rate" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="ProductDetail.Tax" class="form-control">
+                        <label class="form-label" asp-for="ProductDetail.Tax"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.Tax" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="ProductDetail.Tags" class="form-control">
+                        <label class="form-label" asp-for="ProductDetail.Tags"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.Tags" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="ProductDetail.Brand" class="form-control">
+                        <label class="form-label" asp-for="ProductDetail.Brand"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.Brand" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="ProductDetail.ProductCode" class="form-control">
+                        <label class="form-label" asp-for="ProductDetail.ProductCode"></label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.ProductCode" class="font-bold col-red"></span>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <label asp-for="ProductDetail.Description"></label>
+                        <textarea asp-for="ProductDetail.Description" class="form-control"></textarea>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.Description" class="font-bold col-red"></span>
+                    </div>
+                </div>
+
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input asp-for="ProductDetail.HasStock" class="filled-in chk-col-indigo">
+                        <label asp-for="ProductDetail.HasStock">Has Stock</label>
+
+                    </div>
+                    <div>
+                        <span asp-validation-for="ProductDetail.HasStock" class="font-bold col-red"></span>
+                    </div>
+                </div>
+
+                <div class="">
+                    <p>
+                        <b>Select Main Category</b>
+                    </p>
+                    <div>
+                        <select class="form-control" id="MainCatId" name="MainCatId">
+                            @foreach (Category cat in ViewBag.MainCategories)
+                            {
+                                if (Model.ProductCategories.Any(x => x.CategoryId == cat.Id))
+                                {
+                                    <option selected value="@cat.Id"> @cat.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@cat.Id"> @cat.Name</option>
+                                }
+
+
+
+                            }
+
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="">
+                    <p>
+                        <b>Select Child Category</b>
+                    </p>
+                </div>
+                <div id="childCatId">
+                    <select class="form-control show-tick" name="childCatId">
+                        @foreach (Category cat in Model.ProductCategories.First().Category.Children)
+                        {
+                            if (Model.ProductCategories.Any(x => x.CategoryId == cat.Id))
+                            {
+                                <option selected value="@cat.Id"> @cat.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@cat.Id"> @cat.Name</option>
+                            }
+                        }
+                    </select>
+
+
+                </div>
+
+
+
+
+                <br>
+                <button type="submit" class="deep-purple m-t-15 waves-effect">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Css{
+    <style>
+        .dropdown-menu.inner {
+            max-height: 250px !important
+        }
+    </style>
+    <link asp-append-version="true" href="~/admin/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    }
+
+    @section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#ProductDetail_Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    <script>
+
+        $(document).on("change", "#MainCatId", function () {
+            $.ajax({
+                url: "/Admin/Products/LoadChildCategories",
+                type: "get",
+                data: {
+                    "MainCatId": $("#MainCatId").val(),
+                },
+                success: function (res) {
+                    $("#childCatId").empty();
+                    $("#childCatId").append(res);
+                }
+            })
+        })
+
+        $(document).on("click", ".del-images", function () {
+            let item = $(this)
+            $.ajax({
+                url: "/Admin/Products/DeleteProductImages",
+                type: "get",
+                data: {
+                    "proImgId": item.next().val()
+                },
+                success: function (res) {
+                    item.parent().remove()
+                    if (res == "stop") {
+                        $(".del-images",).remove()
+                    }
+                }
+            })
+        })
+
+
+    </script>
+     }
